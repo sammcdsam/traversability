@@ -85,7 +85,7 @@ val_gen = trailClass(batch_size, img_size, val_input_img_paths, val_target_img_p
 model.compile(optimizer="rmsprop", loss="sparse_categorical_crossentropy", metrics=['acc'])
 
 callbacks = [
-    keras.callbacks.ModelCheckpoint("der.h5", save_best_only=True)
+    keras.callbacks.ModelCheckpoint("/trained_models/der.h5", save_best_only=True)
 ]
 
 # Train the model, doing validation at the end of each epoch.
