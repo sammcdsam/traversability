@@ -6,6 +6,7 @@
 from tensorflow import keras
 import numpy as np
 from tensorflow.keras.preprocessing.image import load_img
+import random
 
 #print out all numpy values
 #np.set_printoptions(threshold=sys.maxsize)

@@ -1,5 +1,8 @@
 
 from tensorflow.keras import layers
+from tensorflow import keras
+import numpy as np
+from tensorflow.keras.preprocessing.image import load_img
 
 def unet_model(img_size, num_classes):
     inputs = keras.Input(shape=img_size + (3,))
