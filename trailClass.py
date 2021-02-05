@@ -30,23 +30,11 @@ class trailClass(keras.utils.Sequence):
         batch_input_img_paths = self.input_img_paths[i : i + self.batch_size]
         batch_target_img_paths = self.target_img_paths[i : i + self.batch_size]
         x = np.zeros((self.batch_size,) + self.img_size + (3,), dtype="float32")
-        
-        img_aug_array = []
+
 
         for j, path in enumerate(batch_input_img_paths):
             img = load_img(path, target_size=self.img_size)
             x[j] = img
-            
-            # randomly flip some of the images.
-            # will be removed when a better way to augment images is figured out. 
-            if random.random()<20:
-                flip = True
-            else:
-                flip = False
-            
-            if flip:
-                np.flip(x[j], 1) 
-                img_aug_array.append(flip)
             
         
         y = np.zeros((self.batch_size,) + self.img_size + (1,), dtype="uint8")
@@ -55,8 +43,7 @@ class trailClass(keras.utils.Sequence):
             img = load_img(path, target_size=self.img_size, color_mode="grayscale")
 
             y[j] = np.expand_dims(img, 2)
-            if img_aug_array[j]:
-                np.flip(y[j], 1)
+
             #print(np.unique(y[j]))
             uni = np.unique(y[j])
             for l in range(len(uni)):

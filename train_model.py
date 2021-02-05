@@ -15,7 +15,7 @@ import random
 from matplotlib import pyplot as plt
 
 from trailClass import *
-import unet_model
+import modles.unet_model
 
 
 input_dir = "datasets/traversability/all_sets/images"
