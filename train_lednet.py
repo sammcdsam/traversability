@@ -22,9 +22,11 @@ from tensorflow.keras.callbacks import *
 
 input_dir = "datasets/traversability/all_sets/images"
 target_dir = "datasets/traversability/all_sets/annotations"
-img_size = (480, 640)
+#input_dir = "../LEDnet-keras/datasets/cityscapes/leftImg8bit/train/hamburg"
+#target_dir = "../LEDnet-keras/datasets/cityscapes/gtFine/train/hamburg"
+img_size = (608, 960)
 num_classes = 4
-batch_size = 1
+batch_size = 2
 Tensorboard_dir = "./logs"
 
 input_img_paths = sorted(
@@ -39,6 +41,7 @@ target_img_paths = sorted(
         os.path.join(target_dir, fname)
         for fname in os.listdir(target_dir)
         if fname.endswith(".png") #and not fname.startswith(".")
+        #if fname.endswith("color.png") #and not fname.startswith(".")
     ]
 )
 
@@ -95,7 +98,7 @@ print("Training...")
 
 history = multi.fit(train_gen,validation_data=val_gen, epochs=50,callbacks=callback)
 
-multi.save("model.h5")
+multi.save("final_train.h5")
 
 
 

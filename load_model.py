@@ -5,10 +5,10 @@ import models.led
 
 input_dir = "datasets/traversability/May_set/img_May/image_drive"
 target_dir = "datasets/traversability/May_set/img_May/annotations_drive"
-path = 'outputs/gifs/LEDNet_1.gif'
-img_size = (480, 640)
-num_classes = 4
-batch_size = 8
+path = 'outputs/gifs/LEDNet_cityscape.gif'
+img_size = (512,1024)
+num_classes = 255
+batch_size = 1
 
 input_img_paths = sorted(
     [
@@ -97,7 +97,7 @@ keras.backend.clear_session()
 #model.summary()
 
 #load model
-model = keras.models.load_model('trained_models/model.h5')
+model = keras.models.load_model('cityscape_berlin.h5')
 
 import random
 from matplotlib import pyplot as plt
@@ -106,7 +106,7 @@ from matplotlib import cm
 import webcolors
 # Split our img paths into a training and a validation set
 
-val_samples = 75
+val_samples = 40
 val_input_img_paths = input_img_paths
 val_target_img_paths = target_img_paths
 

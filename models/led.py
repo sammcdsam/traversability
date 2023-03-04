@@ -187,19 +187,19 @@ def decoder(inpu_tensor,classes):
     
     up_dim1,up_dim2 = 2*K.int_shape(class_contextc7)[1],2*K.int_shape(class_contextc7)[2]
     
-    upcon_7 = resizer_block(class_contextc7,(up_dim1-1,up_dim2))
+    upcon_7 = resizer_block(class_contextc7,(up_dim1,up_dim2))
     up_sum = add([upcon_7,class_contextc5])
     up1_dim1,up2_dim2 = 2*K.int_shape(up_sum)[1],2*K.int_shape(up_sum)[2]
     upcon_8 = resizer_block(up_sum,(up1_dim1,up2_dim2))
     up1_sum = add([upcon_8,class_contextc3])
     up2_dim1,up2_dim2 = 2*K.int_shape(up1_sum)[1],2*K.int_shape(up1_sum)[2]
-    upcon_9 = resizer_block(up1_sum,(up2_dim1,up2_dim2))
+    upcon_9 = resizer_block(up1_sum,(up2_dim1-1,up2_dim2))
     
     patch1_merger = multiply([upcon_9,base_patch])
     
     final_merge = add([patch1_merger,cc])
     
-    final_merge = resizer_block(final_merge,(480,640))
+    final_merge = resizer_block(final_merge,(1208,1920))
     final_merge = Conv2D(classes,1,padding="same")(final_merge)
     final_merge = Activation("softmax")(final_merge)
     return final_merge

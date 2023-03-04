@@ -45,11 +45,14 @@ class trailClass(keras.utils.Sequence):
             y[j] = np.expand_dims(img, 2)
 
             #print(np.unique(y[j]))
-            uni = np.unique(y[j])
-            for l in range(len(uni)):
+            #uni = np.unique(y[j])
+            #print(uni)
+            #for l in range(len(uni)):
                 #create unique identifiers for each color in the label image/
-                y[j][y[j]==uni[l]] = l
+                #y[j][y[j]==uni[l]] = l
+                
 
+            #print(np.unique(y[j]))
 
             # Ground truth labels are 1, 2, 3. Subtract one to make them 0, 1, 2:
         return x, y
